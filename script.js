@@ -13,6 +13,8 @@ const MY_ID = 819208805;
 const ARTEM_ID = 992108033;
 const CHANNEL_ID = -905881279;
 
+const regex = /в[ао]*пр[о]*[сш]\s*м[е]*нт[о]*р[уам ]*/ig;
+
 const button1 = {
   text: 'Взял',
   callback_data: 'button1',
@@ -34,9 +36,9 @@ const bot = new TelegramBot(TOKEN, { polling: true });
 bot.on('message', (msg) => {
   if (msg.chat.id === CHANNEL_ID) return;
 
-  const messageText = msg.text.toLowerCase();
+  const messageText = msg.text;
 
-  if (!messageText.toLocaleLowerCase().includes(INTRO_PHRASE)) return;
+  if (!regex.test(messageText)) return;
 
   const id = msg.chat.id.toString();
   const isForum = Boolean(msg.chat?.is_forum);
@@ -58,10 +60,7 @@ bot.on('message', (msg) => {
   messageLink += messageId
 
   message += ` ${messageLink}`;
-  const second_message = `Поставленный вопрос: ${messageText
-    .toLocaleLowerCase()
-    .split('вопрос знатокам')[1]
-    .trim()}`;
+  const second_message = `Поставленный вопрос: ${messageText.replace(regex, '')}`;
 
   sendToChannel(`${message}\n${second_message}`);
   bot.sendMessage(id, MESSAGE_FOR_USER, { message_thread_id: threadId })
