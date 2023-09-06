@@ -7,8 +7,8 @@ const TOKEN = '6545611484:AAFZA1Rgp6SPSouzYBdgD8b54Zsm2kjHPs0';
 const MESSAGE_FOR_USER = 'Вашим вопросом уже занимаются';
 const SORRY_MESSAGE =
   'Извините, но я такой фразы больше не знаю, зато умею реагировать на "вопрос ментору"';
-const regexMentor = /в[ао]*пр[ао]*[сш]\s*м[еэ]*нт[ао]*р[уам ]*/gi;
-const regexOld = /в[ао]*пр[ао]*[сш]\s*зн[а]*т[ао]*к[уиам ]*/gi;
+const regexMentor = /в[ао]*пр[ао]*[сш]\s*м[еэ]*нт[ао]*р[уам ]*/i;
+const regexOld = /в[ао]*пр[ао]*[сш]\s*зн[а]*т[ао]*к[уиам ]*/i;
 
 const SELECT = ' ✅';
 
